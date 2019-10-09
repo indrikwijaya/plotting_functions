@@ -29,7 +29,7 @@ plot_volcano <- function(res_tableDE, type, day,
   res_tableDE$genelabels <- ""
   res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_genes] <- label
   
-  ggplot(res_tableDE,aes(x = log2FoldChange, y = -log10(padj))) +
+  volcano_plot <- ggplot(res_tableDE,aes(x = log2FoldChange, y = -log10(padj))) +
     
     ylim(ylims[[1]],ylims[[2]]) +
     xlim(xlims[[1]], xlims[[2]]) +
@@ -50,17 +50,22 @@ plot_volcano <- function(res_tableDE, type, day,
                        values = c(label = 'blue'))+
     
     #remove legend for colour
-    guides(colour = F)+
+    guides(colour = F)
     
-    ###add gene labels for particular group from list_of_genes
-    geom_text_repel(data = subset(res_tableDE, SYMBOL %in% list_of_genes),# & log2FoldChange > 1),
+  
+    ###add gene labels for particular group from list_of_genes if no of genes <= 20
+    if(length(list_of_genes) <= 20){
+    volcano_plot <- volcano_plot + geom_text_repel(data = subset(res_tableDE, SYMBOL %in% list_of_genes),# & log2FoldChange > 1),
                     #data = subset(res_tableDE, SYMBOL %in% c('Htra2','Tomm7','Sqstm1')), #for rna autophagy
                     aes(label = SYMBOL), size = 3,
                     box.padding = unit(0.4, 'lines'),
                     point.padding = unit(0.4, 'lines'),
-                    segment.size = 0.2, segment.colour = 'grey50')+
-
-    theme_bw() + 
+                    segment.size = 0.2, segment.colour = 'grey50')
+      
+    }
+    
+    volcano_plot + 
+      theme_bw() + 
     
     ggtitle(paste(type,day, sep = '')) +
     xlab(bquote(~log[2]~ "FC")) +
