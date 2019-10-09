@@ -5,12 +5,7 @@ library(org.Mm.eg.db)
 library(AnnotationDbi)
 library(stringr)
 
-setwd('/Users/indrikwijaya/Downloads/Subgroups 2/')
-comp1 <- read.table('HGNC_complex I.txt',sep = '\t',header= T)
-comp2 <- read.table('HGNC_complex II.txt',sep = '\t',header = T)
-comp3 <- read.table('HGNC_complex III.txt',sep = '\t',header = T)
-comp4 <- read.table('HGNC_complex IV.txt', sep = '\t',header = T)
-comp5 <- read.table('HGNC_complex V.txt', sep = '\t',header = T)
+setwd('/Users/indrikwijaya/Downloads/Subgroups_updated_2/')
 comp_list <- list(comp1,comp2,comp3,comp4,comp5)
 
 plot_volcano_complex <- function(res_tableDE, type, day,list_of_complexes,folder_label,xlims,ylims){
