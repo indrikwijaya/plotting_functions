@@ -5,68 +5,48 @@ library(org.Mm.eg.db)
 library(AnnotationDbi)
 library(stringr)
 
-setwd('/Users/indrikwijaya/Downloads/Subgroups_updated_2/')
 comp_list <- list(comp1,comp2,comp3,comp4,comp5)
 
-plot_volcano_complex <- function(res_tableDE, type, day,list_of_complexes,folder_label,xlims,ylims){
+plot_volcano_complex <- function(res_tableDE, type, day,
+                                 list_of_complexes,
+                                 folder_label,
+                                 xlims, ylims){
+  
   res_tableDE <- data.frame(res_tableDE)
   res_tableDE$SYMBOL <- mapIds(org.Mm.eg.db,
                                keys = as.character(rownames(res_tableDE)),
                                column = 'SYMBOL',
                                keytype ='ACCNUM',
                                multiVals = 'first')
+  
   threshold_DE <- res_tableDE$padj < 0.1
   
   res_tableDE$threshold <- threshold_DE
   #res_tableDE$threshold[res_tableDE$SYMBOL %in% list_of_genes] <- 'highlight'
   
   res_tableDE$genelabels <- ""
-  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[1]]$Approved.Symbol] <- 'CompI'
-  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[2]]$Approved.Symbol] <- 'CompII'
-  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[3]]$Approved.Symbol] <- 'CompIII'
-  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[4]]$Approved.Symbol] <- 'CompIV'
-  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[5]]$Approved.Symbol] <- 'CompV'
+  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[1]]$V1] <- 'CompI'
+  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[2]]$V1] <- 'CompII'
+  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[3]]$V1] <- 'CompIII'
+  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[4]]$V1] <- 'CompIV'
+  res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[5]]$V1] <- 'CompV'
   comp_all <- rbind(list_of_complexes[[1]],list_of_complexes[[2]],list_of_complexes[[3]],
                         list_of_complexes[[4]],list_of_complexes[[5]])$Approved.Symbol
   
   ggplot(res_tableDE,aes(x = log2FoldChange, y = -log10(padj))) +
     
-    # rna axes limit
-    # ylim(-0.05,100) +
-    # xlim(-5,5) +
-    # 
-    #te axes limit
-    # ylim(-0.05,18) +
-    # xlim(-3,3) +
-    
-    #rna enrich axes limit
-    # ylim(-0.05,200) +
-    # xlim(-3,6) +
-    
-    #rpf enrich axes limit
-    # ylim(-0.05,300) +
-    # xlim(-3,10) +
-    
-    #te enrich axes limit
-    # ylim(-0.05,50) +
-    # xlim(-6,6.5) +
     ylim(ylims[[1]],ylims[[2]]) +
     xlim(xlims[[1]],xlims[[2]]) +
     
     #threshold lines
     geom_vline(xintercept = -1, linetype = 'dashed', color = 'brown',size = 0.7) +
     geom_vline(xintercept = 1, linetype = 'dashed', color = 'brown', size = 0.7) +
-    geom_hline(yintercept = 1, linetype = 'dashed', color = 'brown', size = 0.7) +
+    geom_hline(yintercept = -log10(0.05), linetype = 'dashed', color = 'brown', size = 0.7) +
     
     #points
     geom_point(aes(colour = threshold),alpha = 0.5) +
     geom_point(data = subset(res_tableDE, SYMBOL %in% comp_all),
                aes(colour = genelabels,shape = genelabels),alpha = 1,size = 2)+
-    # geom_text_repel(aes(x = log2FoldChange, y = -log10(padj), 
-    #                     label = ifelse(genelabels==TRUE,res_tableDE$SYMBOL,""),size = 3),
-    #                 box.padding = unit(0.2,'lines'),
-    #                 point.padding = unit(0.2, 'lines'))+
-    
     
     scale_colour_manual(breaks = c('CompI','CompII','CompIII','CompIV','CompV'),
                         labels = c('CompI','CompII','CompIII','CompIV','CompV'),
