@@ -5,6 +5,7 @@ library(org.Mm.eg.db)
 library(AnnotationDbi)
 library(stringr)
 
+alpha <- 0.05
 comp_list <- list(compI, compII, compIII, compIV, compV)
 comp_assembly_list <- list(compI_assembly, compII_assembly, compIII_assembly, compIV_assembly, compV_assembly)
 
@@ -20,7 +21,7 @@ plot_volcano_complex <- function(res_tableDE, type, day,
                                keytype ='ACCNUM',
                                multiVals = 'first')
   
-  threshold_DE <- res_tableDE$padj < 0.05
+  threshold_DE <- res_tableDE$padj < alpha
   
   res_tableDE$threshold <- threshold_DE
 
