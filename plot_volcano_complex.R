@@ -20,11 +20,10 @@ plot_volcano_complex <- function(res_tableDE, type, day,
                                keytype ='ACCNUM',
                                multiVals = 'first')
   
-  threshold_DE <- res_tableDE$padj < 0.1
+  threshold_DE <- res_tableDE$padj < 0.05
   
   res_tableDE$threshold <- threshold_DE
-  #res_tableDE$threshold[res_tableDE$SYMBOL %in% list_of_genes] <- 'highlight'
-  
+
   res_tableDE$genelabels <- ""
   res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[1]]$V1] <- 'CompI'
   res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[2]]$V1] <- 'CompII'
@@ -32,7 +31,7 @@ plot_volcano_complex <- function(res_tableDE, type, day,
   res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[4]]$V1] <- 'CompIV'
   res_tableDE$genelabels[res_tableDE$SYMBOL %in% list_of_complexes[[5]]$V1] <- 'CompV'
   comp_all <- rbind(list_of_complexes[[1]],list_of_complexes[[2]],list_of_complexes[[3]],
-                        list_of_complexes[[4]],list_of_complexes[[5]])$Approved.Symbol
+                        list_of_complexes[[4]],list_of_complexes[[5]])$V1
   
   ggplot(res_tableDE,aes(x = log2FoldChange, y = -log10(padj))) +
     
