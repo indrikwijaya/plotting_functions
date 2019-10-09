@@ -51,7 +51,7 @@ plot_volcano_complex <- function(res_tableDE, type, day,
     scale_colour_manual(breaks = c('CompI','CompII','CompIII','CompIV','CompV'),
                         labels = c('CompI','CompII','CompIII','CompIV','CompV'),
                       values = c("#0072B2", "#D55E00","#E69F00", "grey3", "coral4",'#F8766D','#00BFC4'))+
-    labs(colour = 'test',shape ='test')+
+    labs(colour = 'test', shape ='test')+
     guides(colour = guide_legend(ncol = 2))+
 
     geom_text_repel(data = subset(res_tableDE, SYMBOL %in% comp_all), #& log2FoldChange > 1),
@@ -72,9 +72,9 @@ plot_volcano_complex <- function(res_tableDE, type, day,
           legend.text = element_text(size = 12),
           plot.title = element_text(size = rel(1.5),hjust = 0.5),
           axis.title = element_text(size = rel(1.25)),
-          axis.text.y = element_text(size = 12),
-          axis.text.x = element_text(size=14))
-  #save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/enrichment/notnorm/no_er_genes/volcano_plots/'
+          axis.text.y = element_text(size = 14),
+          axis.text.x = element_text(size=16))
+
   save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/refseq_updated_shifted/'
   
   #check whether folder exists
