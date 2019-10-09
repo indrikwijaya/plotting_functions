@@ -5,7 +5,8 @@ library(org.Mm.eg.db)
 library(AnnotationDbi)
 library(stringr)
 
-comp_list <- list(comp1,comp2,comp3,comp4,comp5)
+comp_list <- list(compI, compII, compIII, compIV, compV)
+comp_assembly_list <- list(compI_assembly, compII_assembly, compIII_assembly, compIV_assembly, compV_assembly)
 
 plot_volcano_complex <- function(res_tableDE, type, day,
                                  list_of_complexes,
