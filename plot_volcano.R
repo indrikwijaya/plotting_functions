@@ -53,7 +53,7 @@ plot_volcano <- function(res_tableDE, type, day,
     guides(colour = F)
     
   
-    ###add gene labels for particular group from list_of_genes if no of genes <= 30
+    ###add gene labels for particular group from list_of_genes if no of genes <= 20
     if(length(list_of_genes) <= 30){
     volcano_plot <- volcano_plot + geom_text_repel(data = subset(res_tableDE, SYMBOL %in% list_of_genes),# & log2FoldChange > 1),
                     #data = subset(res_tableDE, SYMBOL %in% c('Htra2','Tomm7','Sqstm1')), #for rna autophagy
