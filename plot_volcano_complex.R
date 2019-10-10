@@ -55,11 +55,11 @@ plot_volcano_complex <- function(res_tableDE, type, day,
     labs(colour = 'test', shape ='test')+
     guides(colour = guide_legend(ncol = 2))+
 
-    geom_text_repel(data = subset(res_tableDE, SYMBOL %in% comp_all), #& log2FoldChange > 1),
-                    aes(label = SYMBOL), size = 3,
-                    box.padding = unit(0.4, 'lines'),
-                    point.padding = unit(0.4, 'lines'),
-                    segment.size = 0.2, segment.colour = 'grey50')+
+    # geom_text_repel(data = subset(res_tableDE, SYMBOL %in% comp_all), #& log2FoldChange > 1),
+    #                 aes(label = SYMBOL), size = 3,
+    #                 box.padding = unit(0.4, 'lines'),
+    #                 point.padding = unit(0.4, 'lines'),
+    #                 segment.size = 0.2, segment.colour = 'grey50')+
     
     theme_bw() + 
     
