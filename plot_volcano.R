@@ -86,9 +86,9 @@ plot_volcano <- function(res_tableDE, type, day,
   save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/refseq_updated_shifted/'
   
   #check whether folder exists
-  save_folder <- paste(save_dir, folder_label, sep = '') 
+  save_folder <- paste(save_dir, folder_label, sep='') 
   ifelse(!dir.exists(save_folder), dir.create(save_folder), FALSE)
   
-  filepath <- paste(save_folder, '/', type, toString(day), '.png',sep = '')
-  ggsave(filepath,width = 9, height = 7)
+  filepath <- paste(save_folder, '/', type, toString(day), '.png',sep='')
+  ggsave(filepath, width=9, height=7)
 }
