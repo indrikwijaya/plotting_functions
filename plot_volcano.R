@@ -53,7 +53,7 @@ plot_volcano <- function(res_tableDE, type, day,
     guides(colour = F)
     
   
-    ###add gene labels for particular group from list_of_genes if no of genes <= 30
+    #add gene labels for particular group from list_of_genes if no of genes <= 30
     subgroup_genes <- subset(res_tableDE, SYMBOL %in% list_of_genes)
     if(nrow(subgroup_genes) <= 30){
     volcano_plot <- volcano_plot + geom_text_repel(data = subgroup_genes,# & log2FoldChange > 1),
@@ -73,17 +73,18 @@ plot_volcano <- function(res_tableDE, type, day,
     ylab(bquote(~-log[10]~italic(p-adj)))+
     
     theme(legend.position = c(0.15,0.92),
-          #legend.position = 'none',
+          legend.position = 'none',
           legend.title = element_blank(),
           legend.background = element_rect(color = 'black', size = 0.5, linetype= 'solid'),
           legend.text = element_text(size = 12),
           plot.title = element_text(size = rel(1.5), hjust = 0.5),
+          plot.title = element_blank(),
           axis.title = element_text(size = rel(1.25)),
           axis.text.y = element_text(size = 14),
           axis.text.x = element_text(size = 16))
 
   #save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/enrichment_crubulk/notnorm/er_genes/volcano_plots/'
-  save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/refseq_updated_shifted/'
+  save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/volcano_plots_refseq_updated_shifted/'
   
   #check whether folder exists
   save_folder <- paste(save_dir, folder_label, sep='') 
