@@ -78,7 +78,7 @@ plot_volcano <- function(res_tableDE, type, day,
           legend.background = element_rect(color = 'black', size = 0.5, linetype= 'solid'),
           legend.text = element_text(size = 12),
           plot.title = element_text(size = rel(1.5), hjust = 0.5),
-          plot.title = element_blank(),
+          #plot.title = element_blank(),
           axis.title = element_text(size = rel(1.25)),
           axis.text.y = element_text(size = 14),
           axis.text.x = element_text(size = 16))
