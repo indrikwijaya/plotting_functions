@@ -35,9 +35,10 @@ plot_volcano <- function(res_tableDE, type, day,
     xlim(xlims[[1]], xlims[[2]]) +
     
     #threshold lines
-    geom_vline(xintercept = -1, linetype = 'dashed', color = 'brown', size = 0.7) +
-    geom_vline(xintercept = 1, linetype = 'dashed', color = 'brown', size = 0.7) +
-    geom_hline(yintercept = -log10(0.05), linetype = 'dashed', color = 'brown', size = 0.7) +
+    geom_vline(xintercept = -1, linetype = 'dashed', color = 'brown', size = 1.2) +
+    geom_vline(xintercept = 1, linetype = 'dashed', color = 'brown', size = 1.2) +
+    geom_hline(yintercept = -log10(0.05), linetype = 'dashed', color = 'brown', 
+               size = 1.2) +
     
     #color points based on lfc and padj threshold
     geom_point(aes(colour = threshold), alpha = 0.5) +
@@ -72,16 +73,16 @@ plot_volcano <- function(res_tableDE, type, day,
     xlab(bquote(~log[2]~ "FC")) +
     ylab(bquote(~-log[10]~italic(p-adj)))+
     
-    theme(legend.position = c(0.15,0.92),
+    theme(#legend.position = c(0.15,0.92),
           #legend.position = 'none',
-          #legend.title = element_blank(),
-          legend.background = element_rect(color = 'black', size = 0.5, linetype= 'solid'),
-          legend.text = element_text(size = 12),
-          plot.title = element_text(size = rel(1.5), hjust = 0.5),
-          #plot.title = element_blank(),
+          legend.title = element_blank(),
+          #legend.background = element_rect(color = 'black', size = 0.5, linetype= 'solid'),
+          #legend.text = element_text(size = 12),
+          #plot.title = element_text(size = rel(1.5), hjust = 0.5),
+          plot.title = element_blank(),
           axis.title = element_text(size = rel(1.25)),
-          axis.text.y = element_text(size = 14),
-          axis.text.x = element_text(size = 16))
+          axis.text.y = element_text(size = 16),
+          axis.text.x = element_text(size = 18))
 
   #save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/enrichment_crubulk/notnorm/er_genes/volcano_plots/'
   save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/volcano_plots_refseq_updated_shifted/'
@@ -90,6 +91,6 @@ plot_volcano <- function(res_tableDE, type, day,
   save_folder <- paste(save_dir, folder_label, sep='') 
   ifelse(!dir.exists(save_folder), dir.create(save_folder), FALSE)
   
-  filepath <- paste(save_folder, '/', type, toString(day), '.png',sep='')
+  filepath <- paste(save_folder, '/', type, toString(day), '.png', sep='')
   ggsave(filepath, width=9, height=7)
 }
