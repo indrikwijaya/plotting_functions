@@ -84,7 +84,7 @@ plot_volcano <- function(res_tableDE, type, day,
           axis.title = element_blank(),
           #axis.text.y = element_text(size = 16),
           axis.text.y = element_blank(),
-          axis.text.x = element_text(size = 36)
+          axis.text.x = element_text(size = 42)
           )
 
   #save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/enrichment_crubulk/notnorm/er_genes/volcano_plots/'
