@@ -82,7 +82,7 @@ plot_volcano <- function(res_tableDE, type, day,
           plot.title = element_blank(),
           axis.title = element_text(size = 20),
           axis.text.y = element_text(size = 16),
-          axis.text.x = element_text(size = 18))
+          axis.text.x = element_text(size = 22))
 
   #save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/enrichment_crubulk/notnorm/er_genes/volcano_plots/'
   save_dir <- '/Users/indrikwijaya/Desktop/de_analysis/alpha_0.05/volcano_plots_refseq_updated_shifted/'
