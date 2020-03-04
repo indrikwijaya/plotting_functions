@@ -74,13 +74,13 @@ plot_volcano <- function(res_tableDE, type, day,
     ylab(bquote(~-log[10]~italic(p-adj)))+
     
     theme(#legend.position = c(0.15,0.92),
-          #legend.position = 'none',
-          legend.title = element_blank(),
+          legend.position = 'none',
+          #legend.title = element_blank(),
           #legend.background = element_rect(color = 'black', size = 0.5, linetype= 'solid'),
           #legend.text = element_text(size = 12),
           #plot.title = element_text(size = rel(1.5), hjust = 0.5),
           plot.title = element_blank(),
-          axis.title = element_text(size = rel(1.25)),
+          axis.title = element_text(size = 20),
           axis.text.y = element_text(size = 16),
           axis.text.x = element_text(size = 18))
 
